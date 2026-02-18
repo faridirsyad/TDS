@@ -1,0 +1,280 @@
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 10px;
+  color: #fff;
+}
+
+.boxes figure {
+  margin: 0;
+  position: relative;
+}
+
+.boxes figure img {
+  max-width: 100%;
+  display: block;
+  position: relative;
+}
+
+.boxes figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background: #2c3f52;
+  color: #ed4e6e;
+}
+
+.boxes figcaption h3 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.boxes figcaption span:before {
+  content: "by ";
+}
+
+.boxes figcaption a {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  background: #0b4f52;
+  color: #fff;
+}
+
+/* Individual Caption Styles */
+
+/* Caption Style 1 */
+.boxes figcaption {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.boxes figure:hover figcaption,
+.boxes figcaption {
+  opacity: 1;
+  -webkit-transform: translate(15px, 15px);
+  -moz-transform: translate(15px, 15px);
+  -ms-transform: translate(15px, 15px);
+  transform: translate(15px, 15px);
+}
+
+.boxes figcaption h3 {
+  margin-top: 2vh;
+}
+
+.boxes figcaption span {
+  display: block;
+}
+
+.boxes figcaption a {
+  margin-top: 28px;
+}
+
+.boxes a.btn {
+  padding: 4px 16px 4px;
+  box-shadow: none;
+}
+/* .boxes {
+  margin-bottom: 70px;
+} */
+
+.boxes > div {
+  position: relative;
+}
+
+.boxes figure figcaption {
+  background-color: #1eb5c0;
+  position: absolute;
+  top: 0;
+  font-size: 13px;
+  line-height: 19px;
+  color: #fff;
+  text-align: left;
+  left: 0;
+  height: 100%;
+  width: 57%;
+  padding: 0 11px;
+  opacity: 0.7;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: rotateY(-90deg);
+  -moz-transform: rotateY(-90deg);
+  -o-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  -o-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+figcaption h3 {
+  color: #ffffff;
+  text-align: center;
+  padding-top: 0px !important;
+  font-size: 28px;
+  margin-bottom: 5px !important;
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+figcaption a.btn {
+  display: block;
+  float: right;
+  margin-top: 0px;
+  margin-right: 4px;
+}
+
+.boxes {
+  margin-bottom: 5vh;
+}
+
+.boxes figure div {
+  overflow: hidden;
+}
+
+.boxes figure {
+  -webkit-perspective: 1700px;
+  -moz-perspective: 1700px;
+  -ms-perspective: 1700px;
+  -o-perspective: 1700px;
+  perspective: 1700px;
+
+  -webkit-perspective-origin: 0 50%;
+  -moz-perspective-origin: 0 50%;
+  -ms-perspective-origin: 0 50%;
+  -o-perspective-origin: 0 50%;
+  perspective-origin: 0 50%;
+  background-color: #1eb5c0;
+}
+
+.boxes figure img {
+  width: 100%;
+  position: relative;
+  transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  -webkit-transition: 0.5s ease;
+}
+
+.boxes figure:hover img {
+  -webkit-transform: translateX(25%);
+  -moz-transform: translateX(25%);
+  -ms-transform: translateX(25%);
+  transform: translateX(25%);
+}
+
+.boxes figure:hover figcaption {
+  opacity: 1;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s;
+  -o-transition: -moz-transform 0.4s, opacity 0.1s;
+  transition: transform 0.4s, opacity 0.1s;
+}
+
+/*--------------------------------------------------------------
+# Team
+--------------------------------------------------------------*/
+.recom {
+  background: #e0ffff;
+}
+
+.recom .member {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.recom .member .pic {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.recom .member img {
+  transition: all ease-in-out 0.4s;
+  object-fit: contain;
+  width: 100% !important;
+}
+
+.recom .member:hover img {
+  transform: scale(1.1);
+}
+
+.recom .member .member-info {
+  position: absolute;
+  bottom: -30px;
+  left: 0px;
+  right: 0px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recom .member h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #01036f;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.recom .member h4::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #0d12fc;
+  bottom: 0;
+  left: calc(50% - 25px);
+}
+
+.recom .member span {
+  font-style: italic;
+  display: block;
+  font-size: 13px;
+  color: #01036f;
+}
+
+.recom .member .social {
+  margin-top: 10px;
+}
+
+.recom .member .social a {
+  transition: color 0.3s;
+  color: #01036f;
+}
+
+.recom .member .social a:hover {
+  color: #1acc8d;
+}
+
+.recom .member .social i {
+  font-size: 16px;
+  margin: 0 2px;
+}

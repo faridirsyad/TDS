@@ -144,7 +144,7 @@
                       </div>
                       <div class="form-group row">
                         <label for="requirement" class="col-sm-3 col-form-label">Visa Requirement</label>
-                        <div class="col-sm-9 form-floating">
+                        <div class="col-sm-9 form-floating" wire:ignore>
                           {{-- <textarea class="form-control" placeholder="Write visa requirement here" id="requirement" wire:model="requirement" style="height: 125px">{{$requirement}}</textarea> --}}
                           <trix-editor
                               class="formatted-content"

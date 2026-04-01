@@ -250,126 +250,104 @@
                         </div>
                         @error('type') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
                       </div>
+
+                     {{-- Tour Description --}}
                       <div class="form-group row">
-                        <label for="description" class="col-sm-3 col-form-label">Tour Description</label>
-                        <div class="col-sm-9 form-floating" wire:ignore>
-                          {{-- <textarea class="form-control" placeholder="Write tour description here" id="description" wire:model="description" style="height: 125px">{{$description}}</textarea> --}}
-                          <trix-editor
-                              class="formatted-content"
-                              x-data
-                              x-on:trix-change="$dispatch('input', event.target.value)"
-                              x-ref="trix"
-                              wire:model.debounce.60s="description"
-                              wire:key="uniqueKeyDescription"
-                          ></trix-editor>
-                        </div>
-                        <input
-                            id="descriptionContent"
-                            type="hidden"
-                            wire:model="description"
-                        >
-                        @error('description') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
+                          <label class="col-sm-3 col-form-label">Tour Description</label>
+                          <div class="col-sm-9">
+                              <div wire:ignore>
+                                  <input id="trix_description" type="hidden">
+                                  <trix-editor input="trix_description" id="editor_description" class="formatted-content"></trix-editor>
+                              </div>
+                              <input type="hidden" wire:model.defer="description" id="lw_description">
+                          </div>
+                          @error('description')
+                              <div class="col-sm-3"></div>
+                              <div class="col-sm-9"><p style="color:red;">{{ $message }}</p></div>
+                          @enderror
                       </div>
+
+                      {{-- Tour Included Item --}}
                       <div class="form-group row">
-                        <label for="include" class="col-sm-3 col-form-label">Tour Included Item</label>
-                        <div class="col-sm-9 form-floating" wire:ignore>
-                          {{-- <textarea class="form-control" placeholder="Write included item here" id="include" wire:model="include" style="height: 125px">{{$include}}</textarea> --}}
-                          <trix-editor
-                              class="formatted-content"
-                              x-data
-                              x-on:trix-change="$dispatch('input', event.target.value)"
-                              x-ref="trix"
-                              wire:model.debounce.60s="include"
-                              wire:key="uniqueKeyInclude"
-                          ></trix-editor>
-                        </div>
-                        <input
-                            id="descriptionInclude"
-                            type="hidden"
-                            wire:model="include"
-                        >
-                        @error('include') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
+                          <label class="col-sm-3 col-form-label">Tour Included Item</label>
+                          <div class="col-sm-9">
+                              <div wire:ignore>
+                                  <input id="trix_include" type="hidden">
+                                  <trix-editor input="trix_include" id="editor_include" class="formatted-content"></trix-editor>
+                              </div>
+                              <input type="hidden" wire:model.defer="include" id="lw_include">
+                          </div>
+                          @error('include')
+                              <div class="col-sm-3"></div>
+                              <div class="col-sm-9"><p style="color:red;">{{ $message }}</p></div>
+                          @enderror
                       </div>
+
+                      {{-- Tour Excluded Item --}}
                       <div class="form-group row">
-                        <label for="exclude" class="col-sm-3 col-form-label">Tour Excluded Item</label>
-                        <div class="col-sm-9 form-floating" wire:ignore>
-                          {{-- <textarea class="form-control" placeholder="Write excluded item here" id="exclude" wire:model="exclude" style="height: 125px">{{$exclude}}</textarea> --}}
-                          <trix-editor
-                              class="formatted-content"
-                              x-data
-                              x-on:trix-change="$dispatch('input', event.target.value)"
-                              x-ref="trix"
-                              wire:model.debounce.60s="exclude"
-                              wire:key="uniqueKeyExclude"
-                          ></trix-editor>
-                        </div>
-                        <input
-                            id="descriptionExclude"
-                            type="hidden"
-                            wire:model="exclude"
-                        >
-                        @error('exclude') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
+                          <label class="col-sm-3 col-form-label">Tour Excluded Item</label>
+                          <div class="col-sm-9">
+                              <div wire:ignore>
+                                  <input id="trix_exclude" type="hidden">
+                                  <trix-editor input="trix_exclude" id="editor_exclude" class="formatted-content"></trix-editor>
+                              </div>
+                              <input type="hidden" wire:model.defer="exclude" id="lw_exclude">
+                          </div>
+                          @error('exclude')
+                              <div class="col-sm-3"></div>
+                              <div class="col-sm-9"><p style="color:red;">{{ $message }}</p></div>
+                          @enderror
                       </div>
+
+                      {{-- Pricelist --}}
                       <div class="form-group row">
-                        <label for="pricelist" class="col-sm-3 col-form-label">Pricelist</label>
-                        <div class="col-sm-9 form-floating" wire:ignore>
-                          {{-- <textarea class="form-control" placeholder="Write pricelist here" id="pricelist" wire:model="pricelist" style="height: 125px">{{$pricelist}}</textarea> --}}
-                          <trix-editor
-                              class="formatted-content"
-                              x-data
-                              x-on:trix-change="$dispatch('input', event.target.value)"
-                              x-ref="trix"
-                              wire:model.debounce.60s="pricelist"
-                              wire:key="uniqueKeyPricelist"
-                          ></trix-editor>
-                        </div>
-                        <input
-                            id="descriptionPricelist"
-                            type="hidden"
-                            wire:model="pricelist"
-                        >
-                        @error('pricelist') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
+                          <label class="col-sm-3 col-form-label">Pricelist</label>
+                          <div class="col-sm-9">
+                              <div wire:ignore>
+                                  <input id="trix_pricelist" type="hidden">
+                                  <trix-editor input="trix_pricelist" id="editor_pricelist" class="formatted-content"></trix-editor>
+                              </div>
+                              <input type="hidden" wire:model.defer="pricelist" id="lw_pricelist">
+                          </div>
+                          @error('pricelist')
+                              <div class="col-sm-3"></div>
+                              <div class="col-sm-9"><p style="color:red;">{{ $message }}</p></div>
+                          @enderror
                       </div>
+
+                      {{-- Additional Activities --}}
                       <div class="form-group row">
-                        <label for="activities" class="col-sm-3 col-form-label">Additional Activities</label>
-                        <div class="col-sm-9 form-floating" wire:ignore>
-                          {{-- <textarea class="form-control" placeholder="Write additional activities here" id="activities" wire:model="activities" style="height: 125px">{{$activities}}</textarea> --}}
-                          <trix-editor
-                              class="formatted-content"
-                              x-data
-                              x-on:trix-change="$dispatch('input', event.target.value)"
-                              x-ref="trix"
-                              wire:model.debounce.60s="activities"
-                              wire:key="uniqueKeyActivities"
-                          ></trix-editor>
-                        </div>
-                        <input
-                            id="descriptionActivities"
-                            type="hidden"
-                            wire:model="activities"
-                        >
-                        @error('activities') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
+                          <label class="col-sm-3 col-form-label">Additional Activities</label>
+                          <div class="col-sm-9">
+                              <div wire:ignore>
+                                  <input id="trix_activities" type="hidden">
+                                  <trix-editor input="trix_activities" id="editor_activities" class="formatted-content"></trix-editor>
+                              </div>
+                              <input type="hidden" wire:model.defer="activities" id="lw_activities">
+                          </div>
+                          @error('activities')
+                              <div class="col-sm-3"></div>
+                              <div class="col-sm-9"><p style="color:red;">{{ $message }}</p></div>
+                          @enderror
                       </div>
+
+                      {{-- Terms and Conditions --}}
                       <div class="form-group row">
-                        <label for="termcondition" class="col-sm-3 col-form-label">Term and Conditions</label>
-                        <div class="col-sm-9 form-floating" wire:ignore>
-                          {{-- <textarea class="form-control" placeholder="Write terms and conditions here" id="termcondition" wire:model="termcondition" style="height: 125px">{{$termcondition}}</textarea> --}}
-                          <trix-editor
-                              class="formatted-content"
-                              x-data
-                              x-on:trix-change="$dispatch('input', event.target.value)"
-                              x-ref="trix"
-                              wire:model.debounce.60s="termcondition"
-                              wire:key="uniqueKeyTermcondition"
-                          ></trix-editor>
-                        </div>
-                        <input
-                            id="descriptionTermcondition"
-                            type="hidden"
-                            wire:model="termcondition"
-                        >
-                        @error('termcondition') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
+                          <label class="col-sm-3 col-form-label">Terms and Conditions</label>
+                          <div class="col-sm-9">
+                              <div wire:ignore>
+                                  <input id="trix_termcondition" type="hidden">
+                                  <trix-editor input="trix_termcondition" id="editor_termcondition" class="formatted-content"></trix-editor>
+                              </div>
+                              <input type="hidden" wire:model.defer="termcondition" id="lw_termcondition">
+                          </div>
+                          @error('termcondition')
+                              <div class="col-sm-3"></div>
+                              <div class="col-sm-9"><p style="color:red;">{{ $message }}</p></div>
+                          @enderror
                       </div>
+
+                      {{-- Is Displayed as Recommendation --}}
                       <div class="form-group row">
                         <label for="isDisplayRecommendation" class="col-sm-3 col-form-label">Is Displayed as Recommendation in Homepage?</label>
                         <div class="col-sm-9">
@@ -381,6 +359,8 @@
                         </div>
                         @error('isDisplayRecommendation') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
                       </div>
+
+                      {{-- Is Displayed as Favourite --}}
                       <div class="form-group row">
                         <label for="isDisplayFavourite" class="col-sm-3 col-form-label">Is Displayed as Favourite in Homepage?</label>
                         <div class="col-sm-9">
@@ -392,6 +372,7 @@
                         </div>
                         @error('isDisplayFavourite') <div class="col-sm-3"></div><div class="col-sm-9"><p style="color: red;">{{ $message }}</p></div> @enderror
                       </div>
+
                       <div class="form-group row">
                         <label for="tourImage" class="col-sm-3 col-form-label">Tour/Package Image 
                                         @if($action == 'add')
@@ -423,3 +404,97 @@
         </div>
     </div>
 </div>
+
+<script>
+    function bindTrixEditor(editorId, livewireInputId, eventName) {
+        const editor = document.getElementById(editorId);
+        const livewireInput = document.getElementById(livewireInputId);
+
+        if (!editor || !livewireInput) return;
+
+        if (editor.dataset.bound === '1') return;
+        editor.dataset.bound = '1';
+
+        editor.addEventListener('trix-change', function (event) {
+            const html = event.target.value;
+            livewireInput.value = html;
+            livewireInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+            if (window.Livewire) {
+                Livewire.emit(eventName, html);
+            }
+        });
+    }
+
+    function setTrixContent(editorId, value) {
+        const editor = document.getElementById(editorId);
+        if (!editor) return;
+
+        const safeValue = value || '';
+
+        if (editor.editor) {
+            editor.editor.loadHTML(safeValue);
+        } else {
+            editor.addEventListener('trix-initialize', function () {
+                editor.editor.loadHTML(safeValue);
+            }, { once: true });
+        }
+    }
+
+    function initAllEditors() {
+        bindTrixEditor('editor_description', 'lw_description', 'setDescription');
+        bindTrixEditor('editor_include', 'lw_include', 'setInclude');
+        bindTrixEditor('editor_exclude', 'lw_exclude', 'setExclude');
+        bindTrixEditor('editor_pricelist', 'lw_pricelist', 'setPricelist');
+        bindTrixEditor('editor_activities', 'lw_activities', 'setActivities');
+        bindTrixEditor('editor_termcondition', 'lw_termcondition', 'setTermcondition');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initAllEditors();
+    });
+
+    document.addEventListener('livewire:load', function () {
+        initAllEditors();
+
+        window.addEventListener('trix-reset', function () {
+            setTrixContent('editor_description', '');
+            setTrixContent('editor_include', '');
+            setTrixContent('editor_exclude', '');
+            setTrixContent('editor_pricelist', '');
+            setTrixContent('editor_activities', '');
+            setTrixContent('editor_termcondition', '');
+
+            document.getElementById('lw_description').value = '';
+            document.getElementById('lw_include').value = '';
+            document.getElementById('lw_exclude').value = '';
+            document.getElementById('lw_pricelist').value = '';
+            document.getElementById('lw_activities').value = '';
+            document.getElementById('lw_termcondition').value = '';
+        });
+
+        window.addEventListener('trix-fill', function (event) {
+            const data = event.detail || {};
+
+            setTrixContent('editor_description', data.description || '');
+            setTrixContent('editor_include', data.include || '');
+            setTrixContent('editor_exclude', data.exclude || '');
+            setTrixContent('editor_pricelist', data.pricelist || '');
+            setTrixContent('editor_activities', data.activities || '');
+            setTrixContent('editor_termcondition', data.termcondition || '');
+
+            document.getElementById('lw_description').value = data.description || '';
+            document.getElementById('lw_include').value = data.include || '';
+            document.getElementById('lw_exclude').value = data.exclude || '';
+            document.getElementById('lw_pricelist').value = data.pricelist || '';
+            document.getElementById('lw_activities').value = data.activities || '';
+            document.getElementById('lw_termcondition').value = data.termcondition || '';
+        });
+
+        if (window.Livewire) {
+            Livewire.hook('message.processed', function () {
+                initAllEditors();
+            });
+        }
+    });
+</script>

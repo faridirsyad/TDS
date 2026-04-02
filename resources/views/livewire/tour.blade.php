@@ -198,7 +198,7 @@
                       </div> --}}
                         @if(($qData!=null)&&(count($qData)>0))
                             @foreach($qData as $val)
-                            <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="col-12 col-md-6 col-lg-3 mb-4">
                                 <div class="package-item bg-light mb-2">
                                   <a href="{{url('/tour/detail/'.$val->slug)}}">
                                     <img class="img-fluid" src="{{ asset('storage/app/public/tour/'.$val->tourImage) }}" width="100%">

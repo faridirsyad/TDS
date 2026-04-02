@@ -158,20 +158,34 @@
 .flag-style{
   box-shadow: 8px, 8px, 15px rgba(0,0,0.5) !important;
 }
+
+@media (max-width: 991px) {
+  #navbar ul li a,
+  #navbar ul li a:focus,
+  #navbar ul li a:active {
+    color: #fff !important;
+  }
+
+  #navbar ul li a:hover {
+    color: #fff !important;
+  }
+
+  #navbar .active {
+    color: #fff !important;
+  }
+}
 </style>
   <body>
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="fixed-top d-flex align-items-center">
-      <div
-        class="container d-flex justify-content-center justify-content-md-between"
-      >
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"
-            ><a href="mailto:operation@tdsinternationalindonesia.com">operation@tdsinternationalindonesia.com</a></i
-          >
-          <i class="bi bi-phone d-flex align-items-center ms-4"
-            ><span>+62 21 501 00235 / +62 21 503 00238</span></i
-          >
+      <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex flex-column flex-md-row align-items-center align-items-md-center text-center text-md-start">
+          <i class="bi bi-envelope d-flex align-items-center justify-content-center justify-content-md-start">
+            <a href="mailto:operation@tdsinternationalindonesia.com">operation@tdsinternationalindonesia.com</a>
+          </i>
+          <i class="bi bi-phone d-flex align-items-center justify-content-center justify-content-md-start ms-0 ms-md-4 mt-1 mt-md-0">
+            <span>+62 21 501 00235 / +62 21 503 00238</span>
+          </i>
         </div>
         <div class="social-links d-none d-md-flex">
         </div>

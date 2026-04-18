@@ -79,9 +79,9 @@
                                     <td class="text-center">{{ ($page-1) * $pageSize + $loop->index + 1 }}</td>
                                     <td>{{$val->countryCityName}}</td>
                                     <td>{{$val->categoryName}}</td>
-                                    <td>{!! substr($val->countryEmbassyAddress,0,35) !!}</td>
-                                    <td>{!! substr($val->countryRequirement,0,35) !!}</td>
-                                    <td>{!! substr($val->countryCautions,0,35) !!}</td>
+                                    <td>{!! mb_substr($val->countryEmbassyAddress,0,35,'UTF-8') !!}</td>
+                                    <td>{!! mb_substr($val->countryRequirement,0,35,'UTF-8') !!}</td>
+                                    <td>{!! mb_substr($val->countryCautions,0,35,'UTF-8') !!}</td>
                                     <td>
                                         <button type="button" class="btn btn-warning me-2" wire:click="edit({{$val->id}})">Edit</button>
                                         <button type="button" class="btn btn-danger me-2" wire:click="delete({{$val->id}})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>

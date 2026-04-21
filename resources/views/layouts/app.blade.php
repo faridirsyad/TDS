@@ -219,25 +219,25 @@
     </header>
     <!-- End Header -->
     
-    @isset($listCarousel)
+
     {{--var_export($listCarousel)--}}
     <!-- ======= Hero Section ======= -->
-    <section id="hero">
+    @isset($listCarousel)
+    {{-- <section id="hero">
       <div class="hero-container">
         <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
           <div class="carousel-inner" role="listbox">
-            
-            @if(count($listCarousel) > 0)
-              @foreach($listCarousel as $key=>$val)
-                @if($val->isDisplayed)
-                  <!-- Slides -->
-                  <div class="carousel-item {{ ($key==0) ? 'active' : '' }}" style="background-image: url({{ asset('storage/app/public/carousel/'.$val->carouselImage) }})">
-                  </div>
-                @endif
-              @endforeach
-            @endif
+            @php
+              $displayedCarousel = collect($listCarousel)->where('isDisplayed', true)->values();
+            @endphp
+
+            @foreach($displayedCarousel as $key => $val)
+              <div class="carousel-item {{ $key == 0 ? 'active' : '' }}"
+                  style="background-image: url('{{ asset('storage/carousel/'.$val->carouselImage) }}')">
+              </div>
+            @endforeach
           </div>
 
           <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
@@ -245,6 +245,37 @@
           </a>
 
           <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon ri-arrow-right-line" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </section> --}}
+
+    <section id="hero">
+      <div class="hero-container">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+          <div class="carousel-inner" role="listbox">
+            @php
+              $displayedCarousel = collect($listCarousel)->where('isDisplayed', true)->values();
+            @endphp
+
+            @foreach($displayedCarousel as $key => $val)
+              <div class="carousel-item {{ $key == 0 ? 'active' : '' }}"
+                  style="
+                    background-image: url('{{ asset('storage/carousel/'.$val->carouselImage) }}');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                  ">
+              </div>
+            @endforeach
+          </div>
+
+          <a class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon ri-arrow-left-line" aria-hidden="true"></span>
+          </a>
+
+          <a class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon ri-arrow-right-line" aria-hidden="true"></span>
           </a>
         </div>
@@ -350,7 +381,7 @@
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 footer-links">
+            <div class="col-lg-3 col-md-6 footer-links">
               <h4>Useful Links</h4>
               <ul>
                 <li>
@@ -365,7 +396,7 @@
               </ul>
             </div>
 
-            <div class="col-lg-2 col-md-6 footer-newsletter">
+            <div class="col-lg-4 col-md-6 footer-newsletter">
               <h4>Follow Us</h4>
 
               <div class="social-links mt-3">
@@ -375,23 +406,6 @@
                 <a href="https://www.tiktok.com/@tds.international?lang=id-ID" class="tiktok"><i class="bx bxl-tiktok"></i></a>
               </div>
             </div>
-
-            {{-- <div class="col-lg-3 col-md-6 footer-newsletter">
-              <h4>Members of</h4>
-
-              <div class="mt-3">
-                  <img src="{{ asset('assets/images/logo-ASITA.jpg') }}" 
-                      alt="Logo ASITA" 
-                      class="img-fluid" 
-                      style="max-height: 60px;">
-              </div>
-              <div class="mt-3">
-                  <img src="{{ asset('assets/images/logo-Astindo(2).png') }}" 
-                      alt="Logo Astindo" 
-                      class="img-fluid" 
-                      style="max-height: 60px;">
-              </div>
-            </div> --}}
           </div>
         </div>
       </div>

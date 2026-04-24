@@ -18,6 +18,7 @@ class SettingCountryModel extends Model
      * @var array $fillable
      */
     protected $fillable = [
+        'countryFlag',
         'countryCityName',
         'tourType',
         'isFreeVisa',

@@ -17,10 +17,11 @@ class SettingPromo extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $flyer, $isDisplayed, $listPromo, $flyerFilename;
-    public $action, $no=1, $promoId;
+    public $action, $no = 1, $promoId;
     public $flagPage, $pageSize, $fdisplay;
 
-    public function mount(){
+    public function mount()
+    {
         $this->flyer = '';
         $this->isDisplayed = '';
         $this->fdisplay = '';
@@ -30,36 +31,37 @@ class SettingPromo extends Component
     public function render()
     {
         $listPromo = SettingPromoModel::select("*")
-        ->when($this->fdisplay != '', function ($query) {
-            return $query->where('isDisplayed', '=', $this->fdisplay);
-        })
-        ->get();
+            ->when($this->fdisplay != '', function ($query) {
+                return $query->where('isDisplayed', '=', $this->fdisplay);
+            })
+            ->get();
 
         // pagination : start
         $list = $listPromo->toArray();
         // pagination parameter
-        if($this->flagPage==true){
+        if ($this->flagPage == true) {
             $this->page = 1;
-            $this->flagPage=false;
-        }else{
+            $this->flagPage = false;
+        } else {
             $this->page = Paginator::resolveCurrentPage('page');
         }
         $this->pageSize = 10;
         $offset = ($this->page * $this->pageSize) - $this->pageSize;
         // displayed data
         $itemsForCurPage = array_slice($list, $offset, $this->pageSize, true);
-        $this->listPromo = array_map(function($array){
+        $this->listPromo = array_map(function ($array) {
             return (object)$array;
         }, $itemsForCurPage);
         // pagination
         $qData = new \Illuminate\Pagination\LengthAwarePaginator($itemsForCurPage, count($list), $this->pageSize, $this->page);
         // pagination : end
-        
+
         return view('livewire.setting-promo', compact('qData'))
-        ->layout('layouts.app-admin');
+            ->layout('layouts.app-admin');
     }
 
-    public function open($act){
+    public function open($act)
+    {
         $this->action = $act;
         $this->flyer = '';
         $this->isDisplayed = '';
@@ -67,16 +69,17 @@ class SettingPromo extends Component
         $this->flyerFilename = null;
     }
 
-    public function addData(){
+    public function addData()
+    {
         $this->validate([
             'flyer' => 'required|image|max:512',
             'isDisplayed' => 'required'
         ]);
         try {
-            if($this->flyer->getClientOriginalName() != null){
+            if ($this->flyer->getClientOriginalName() != null) {
                 $flyer   = $this->flyer->getClientOriginalName();
                 $this->flyer->storeAs(path: 'public/promo', name: $flyer);
-            }else{
+            } else {
                 $flyer = null;
             }
 
@@ -93,9 +96,10 @@ class SettingPromo extends Component
         } catch (\Exception $ex) {
             return redirect(url('/setting-service-deal'))->with(['error' => 'Something goes wrong!!']);
         }
-    }   
-    
-    public function resetFields(){
+    }
+
+    public function resetFields()
+    {
         $this->action = '';
         $this->flyer = '';
         $this->isDisplayed = '';
@@ -103,12 +107,14 @@ class SettingPromo extends Component
         $this->flyerFilename = null;
     }
 
-    public function back(){
+    public function back()
+    {
         $this->resetFields();
         $this->redirect(url('/setting-service-deal'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         try {
             $findData = SettingPromoModel::find($id);
             if (!$findData) {
@@ -125,25 +131,26 @@ class SettingPromo extends Component
         }
     }
 
-    public function editData(){
+    public function editData()
+    {
         $this->validate([
             'flyer' => 'nullable',
             'isDisplayed' => 'required'
         ]);
-        
+
         $dataUpdate = [
-                'isDisplayed'   => $this->isDisplayed,
-                'updated_at'   => Carbon::now()->format('Y-m-d'),
-            ];
-            
-        if(($this->flyer!=null)&&($this->flyer!="")){
+            'isDisplayed'   => $this->isDisplayed,
+            'updated_at'   => Carbon::now()->format('Y-m-d'),
+        ];
+
+        if (($this->flyer != null) && ($this->flyer != "")) {
             $edit = SettingPromoModel::find($this->promoId);
-            if( !$edit->promoFlyer ) {
+            if (!$edit->promoFlyer) {
                 $flyer   = $this->flyer->getClientOriginalName();
                 $this->flyer->storeAs(path: 'public/promo', name: $flyer);
             } else {
                 // delete previous image data
-                $image_path = storage_path('app/public/promo/'.$edit->promoFlyer);
+                $image_path = storage_path('app/public/promo/' . $edit->promoFlyer);
                 unlink($image_path);
                 // insert current image data
                 $flyer   = $this->flyer->getClientOriginalName();
@@ -162,28 +169,36 @@ class SettingPromo extends Component
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $this->promoId = $id;
     }
 
-    public function destroy(){
-        try{
-            $item = SettingPromoModel::find($this->promoId);
-            if( $item->promoFlyer!=null ) {
-                // delete previous image data
-                $image_path = storage_path('app/public/promo/'.$item->promoFlyer);
-                unlink($image_path);
-            }
-            SettingPromoModel::find($this->promoId)->delete();
-            $this->resetFields();
-            //redirect
-            return redirect(url('/setting-service-deal'))->with(['success' => 'Promo successfully deleted.']);
-        }catch(\Exception $e){
-            return redirect(url('/setting-service-deal'))->with(['error' => 'Something goes wrong!!']);
+    public function destroy()
+    {
+        $item = SettingPromoModel::find($this->promoId);
+
+        if (!$item) {
+            return redirect(url('/setting-service-deal'))
+                ->with(['error' => 'Promo is not found.']);
         }
+
+        $imagePath = storage_path('app/public/promo/' . $item->promoFlyer);
+
+        if ($item->promoFlyer && file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+
+        $item->delete();
+
+        $this->resetFields();
+
+        return redirect(url('/setting-service-deal'))
+            ->with(['success' => 'Promo successfully deleted.']);
     }
 
-    public function openFile($filename){
-        return response()->download(storage_path('app/public/promo/'.$filename), $filename);
+    public function openFile($filename)
+    {
+        return response()->download(storage_path('app/public/promo/' . $filename), $filename);
     }
 }

@@ -63,7 +63,7 @@
                            @foreach($listPromo as $val)
                             <tr>
                             <td class="text-center">{{ ($page-1) * $pageSize + $loop->index + 1 }}</td>
-                            <td><img src="{{ asset('storage/app/public/promo/'.$val->promoFlyer) }}" wire:click.prevent="openFile('{{$val->promoFlyer}}')"></td>
+                            <td><img src="{{ asset('storage/promo/'.$val->promoFlyer) }}" wire:click.prevent="openFile('{{$val->promoFlyer}}')"></td>
                             <td>
                                 @if($val->isDisplayed=="1")
                                 Yes
